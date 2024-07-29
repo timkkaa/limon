@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     'journal',
+
 ]
 
 MIDDLEWARE = [
@@ -125,5 +127,5 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "assets"]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
+STATIC_ROOT = 'static'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
