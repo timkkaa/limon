@@ -11,4 +11,4 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(AboutMe)
 class AboutMeAdmin(admin.ModelAdmin):
-    list_display = ['title']
+    list_display = ['descrption']

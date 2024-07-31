@@ -28,3 +28,4 @@ class Publication(models.Model):
 
 class AboutMe(models.Model):
     descrption = RichTextField()
+
