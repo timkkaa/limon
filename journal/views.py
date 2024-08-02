@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import View
 from django.views.generic import TemplateView
 
 from journal.models import AboutMe, Publication
@@ -10,6 +11,12 @@ from journal.models import AboutMe, Publication
 
 class HomeView(TemplateView):
     template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = {
+            'publication_list': Publication.objects.all()
+        }
+        return context
 
 
 class PublicationView(TemplateView):
@@ -28,3 +35,9 @@ class AboutView(TemplateView):
             'about_me': AboutMe.objects.first()
         }
         return context
+
+class PublicationCommentView(View):
+    def post(self, request, *args, **kwargs()):
+    publication_pk = kwargs['pk']
+    publication = Publication.objects.get(it=publication_pk)
+

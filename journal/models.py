@@ -26,6 +26,13 @@ class Publication(models.Model):
         verbose_name = 'Публикация'
 
 
+class PublicationComment(models.Model):
+    publication = models.ForeignKey(Publication, on_delete=models.CASCADE)
+    text = models.TextField
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
 class AboutMe(models.Model):
     descrption = RichTextField()
+
 

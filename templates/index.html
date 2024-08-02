@@ -3,30 +3,27 @@
 
 {% block content %}
 <body>
-    
-    <header class="header text-center">	    
+    <header class="header text-center">
 	    <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Anthony's Blog</a></h1>
-        
-	    <nav class="navbar navbar-expand-lg navbar-dark" >
-           
+
+	    <nav class="navbar navbar-expand-lg navbar-dark">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
+			    <span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div id="navigation" class="collapse navbar-collapse flex-column" >
+			<div id="navigation" class="collapse navbar-collapse flex-column">
 				<div class="profile-section pt-3 pt-lg-0">
-				    <img class="profile-image mb-3 rounded-circle mx-auto" src="{% static 'images/profile.png' %}" alt="image" >
-
-					<div class="bio mb-3">Hi, my name is Anthony Doe. Briefly introduce yourself here. You can also provide a link to the about page.<br><a href="about.html">Find out more about me</a></div><!--//bio-->
+				    <img class="profile-image mb-3 rounded-circle mx-auto" src="{% static 'images/profile.png' %}" alt="image">
+					<div class="bio mb-3">Hi, my name is Anthony Doe. Briefly introduce yourself here. You can also provide a link to the about page.<br><a href="about.html">Find out more about me</a></div>
 					<ul class="social-list list-inline py-3 mx-auto">
 			            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="#"><i class="fab fa-github-alt fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="#"><i class="fab fa-stack-overflow fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="#"><i class="fab fa-codepen fa-fw"></i></a></li>
-			        </ul><!--//social-list-->
+			        </ul>
 			        <hr>
-				</div><!--//profile-section-->
+				</div>
 
 				<ul class="navbar-nav flex-column text-left">
 					<li class="nav-item active">
@@ -56,26 +53,28 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Subscribe</button>
                 </form>
-		    </div><!--//container-->
+		    </div>
 	    </section>
 	    <section class="blog-list px-3 py-5 p-md-5">
 		    <div class="container">
-
-				{% for item in publication_list %}
-				<div class="col-md-6">
-					<div class="blog_box">
-                        <div class="blog_img"><img src="{{ item.image.url }}"></div>
-                        <h4 class="date_text">{{ item.created_date }}</h4>
-                        <h4 class="prep_text">{{ item.title }}</h4>
-						<p class="lorem_text">{{ item.short_description }}</p>
-					</div>
-                     <div class="read_bt"><a href="{% url 'publication-detail' item.id %}">Read More</a></div>
-                  </div>
-				{% endfor %}
-
+			    {% for item in publication_list %}
+				    <div class="item mb-5">
+				        <div class="media">
+				            <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{ item.image_url }}" alt="image">
+				            <div class="media-body">
+				                <h3 class="title mb-1"><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></h3>
+				                <div class="meta mb-1">
+				                    <span class="date">Published {{ item.date_published }}</span>
+				                    <span class="time">{{ item.read_time }} min read</span>
+				                </div>
+				                <div class="intro">{{ item.intro }}</div>
+				                <a class="more-link" href="{{ item.get_absolute_url }}">Read more &rarr;</a>
+				            </div>
+				        </div>
+				    </div>
+			    {% endfor %}
 		    </div>
 	    </section>
-
+	</div>
 </body>
-
 {% endblock %}
